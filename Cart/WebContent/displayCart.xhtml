@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Your Cart</title>
+	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+</style>
+</h:head>
+
+<h:body>
+
+	<h:form>
+	<p:menubar style="background-color:#888888 ">
+        <p:menuitem value="Home" icon="ui-icon-home" url="success.xhtml"><f:setPropertyActionListener target="#{cart.user_id}"
+							value="#{login.user_id}" /></p:menuitem>
+        <p:menuitem value="Logout" action="#{login.logout}" />
+  </p:menubar>
+ <h2> Your Cart </h2>
+ <h:outputText value="No items in your cart" rendered="#{ empty cart.l2}"></h:outputText>
+		<h:panelGroup id="output">
+			<h:dataTable value="#{cart.l2}" var="o" styleClass="hoverTable" headerClass="tableHeader" rendered="#{not empty cart.l2}">
+			<h:column>
+					<f:facet name="header">
+						Image</f:facet>
+  <h:graphicImage url="#{o.img}" height="100" width="100"/>
+   </h:column>
+				<h:column>
+					<f:facet name="header">
+						Product Name
+					</f:facet>
+    #{o.name}
+   </h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Product Description"></h:outputText>
+					</f:facet>
+   #{o.description}
+   </h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Product Price"></h:outputText>
+					</f:facet>
+   #{o.price}
+   </h:column>
+				
+   <h:column>
+ <f:facet name="header">Quantity</f:facet>
+   #{o.ct_qty}
+   <h:commandButton value="+" action="#{cart.addItem(o)}" styleClass="button" style="padding:4px 4px;width:20px; margin-right:6px">
+   <f:setPropertyActionListener target="#{cart.user_id}"
+							value="#{login.user_id}" /></h:commandButton>
+    <h:commandButton value="-" action="#{cart.removeItem(o)}" styleClass="button" style="padding:4px 4px;width:20px">
+     <f:setPropertyActionListener target="#{cart.user_id}"
+							value="#{login.user_id}" />
+    </h:commandButton> 
+   </h:column>
+ <h:column>
+					<f:facet name="header">
+						Total Price {$}
+					</f:facet>
+   #{o.total}
+   </h:column>
+				<h:column>
+					<h:commandButton value="Remove" action="#{cart.removeCart(o)}" styleClass="button" >  
+						<f:setPropertyActionListener target="#{cart.product_id}"
+							value="#{o.product_id}" />
+						<f:setPropertyActionListener target="#{cart.user_id}"
+							value="#{login.user_id}" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+			<div style="margin:5px 0 10px 900px" >
+			<h:outputText value="----------"/><br></br>
+		<h:outputText value="Total: $#{cart.finalTotal}"></h:outputText>
+		</div>
+			
+		</h:panelGroup>
+		<h:commandButton value="Proceed to Checkout" action="#{checkout.getAddress}" styleClass="button">
+			 <f:setPropertyActionListener target="#{checkout.user_id}"
+							value="#{cart.user_id}" />
+			<f:setPropertyActionListener target="#{checkout.finalTotal}"
+							value="#{cart.finalTotal}" />
+			<f:setPropertyActionListener target="#{checkout.l2}"
+				value="#{cart.l2}" />
+			</h:commandButton>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Login</title>
+	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+<h1>Online Shopping Cart</h1>
+	<p:menubar style="background-color:#888888 ">
+        <p:menuitem value="SignUp" icon="ui-icon-person" url="signUp.xhtml" />
+       
+  </p:menubar ><br />
+	<div align="center">
+		<h2>LOGIN</h2>
+		<h:form>
+			<h:panelGrid columns="3" styleClass="formTable">
+ UserName: 
+<h:inputText value="#{login.username}" required="true"
+					requiredMessage="Username required" id="username" styleClass="textbox"/>
+				<h:message for="username" styleClass="error" />          
+ Password:              
+<h:inputSecret value="#{login.password}" required="true"
+					requiredMessage="Password required" id="password" styleClass="textbox"/>
+				<h:message for="password" styleClass="error" />
+				</h:panelGrid>
+<h:commandButton value="Login" action="#{login.doLogin}" styleClass="button"/></h:form>
+	</div>
+</h:body>
+
+</html>

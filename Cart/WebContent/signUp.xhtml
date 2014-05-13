@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Sign Up</title>
+	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+<p:menubar style="background-color:#888888 ">
+        <p:menuitem value="Login" url="index.xhtml" />
+  </p:menubar>
+	<div align="center">
+		<h1>Sign Up</h1>
+		<h:form>
+			<h:panelGrid columns="3" styleClass="formTable">
+ Enter UserName: 
+<h:inputText value="#{login.username}" required="true"
+					requiredMessage="Username required" id="username" styleClass="textbox"/>
+				<h:message for="username" styleClass="error" />          
+ Enter Password:              
+<h:inputSecret value="#{login.password}" required="true"
+					requiredMessage="Password required" id="password" styleClass="textbox"/>
+				<h:message for="password" styleClass="error" />
+First Name: 
+<h:inputText value="#{login.firstName}" required="true"
+					requiredMessage="First name required" id="firstName" styleClass="textbox"/>
+				<h:message for="firstName" styleClass="error" />   
+Last Name: 
+<h:inputText value="#{login.lastName}" required="true"
+					requiredMessage="Last name required" id="lastName" styleClass="textbox"/>
+				<h:message for="lastName" styleClass="error" />   
+Address1:           
+<h:inputText value="#{login.address1}" required="true"
+					requiredMessage="Address required" id="address1" styleClass="textbox"/>
+				<h:message for="address1" styleClass="error" />
+Address2:           
+<h:inputText value="#{login.address2}"  id="address2" styleClass="textbox"/>
+	<h:message for="address2" styleClass="error" />
+State:
+<h:inputText value="#{login.state}" required="true"
+					requiredMessage="State required" id="state" styleClass="textbox"/>
+				<h:message for="state" styleClass="error" />
+Postal Code:
+<h:inputText value="#{login.postalCode}" required="true"
+					requiredMessage="Postal Code required" id="zip" styleClass="textbox" validatorMessage="Postal Code should contain 5 digits">
+					<f:validateLength minimum="5" maximum="5"/></h:inputText>
+				<h:message for="zip" styleClass="error" />
+Mobile:
+<h:inputText value="#{login.mobile}"  id="mobile" styleClass="textbox" ></h:inputText>
+<h:message for="mobile" styleClass="error" />
+			
+				</h:panelGrid>
+<h:commandButton value="Sign Up" action="#{login.doSignUp}" styleClass="button"/>
+
+</h:form>
+	</div>
+</h:body>
+
+</html>

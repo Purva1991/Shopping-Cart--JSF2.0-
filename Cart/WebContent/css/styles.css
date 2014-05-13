@@ -1,0 +1,117 @@
+body {
+  background-color: #C8C8C8  ;
+  text-align:center;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif; 
+  font-size:18px;
+  color:#505050;
+}
+a:hover { 
+  color: red
+}
+h1,h2,h3 {
+  text-align: center;
+  font-family:"Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif; 
+  
+}
+h1.title {
+  display: table;
+  margin: auto;
+  background-color: #afc4d6;
+  border-width: 4px;
+  border-style: outset;
+  border-color: #9fd1ff;
+  padding: 5px 8px;
+  letter-spacing: -.025em;
+} 
+.formTable {
+  display: table;
+}
+.formTable td:first-child {
+  text-align: center;
+}
+
+
+input, textarea {
+  background-color: #ecedf2;
+  text-align: left;
+  font-family:"Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif; 
+  font-size:12px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+  background-color: #9fd1ff;
+  
+}
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+ul.aligned {  
+  display: inline-block;
+  text-align: left; 
+}
+
+.textbox { 
+   border: 6px solid #F7F9FA; 
+-webkit-border-radius: 3px; 
+-moz-border-radius: 3px; 
+border-radius: 3px; 
+-moz-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95a2a7 inset; 
+-webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95A2A7 inset; 
+box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95A2A7 inset; 
+height:25px; 
+width: 175px; 
+display: block;
+margin-bottom: 5px; 
+} 
+
+.button {
+  border: 0 none;
+  border-radius: 2px 2px 2px 2px;
+  color: #505050 ;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif; 
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  text-transform: none;
+  transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  width: auto;
+  text-align: center;
+  
+}
+
+.button:hover{
+	background:#9fd1ff;
+}
+ 
+ .hoverTable{
+		width:100%; 
+		font-size:15px;
+		text-align:center;
+	}
+	.hoverTable td{ 
+		padding:6px; 
+	}
+	
+	.hoverTable tr{
+		background: #C8C8C8;
+	}
+	
+    .hoverTable tr:hover {
+          background-color: #3399CC;
+    }
+.tableHeader{
+	background-color: #003366;
+	color:white;
+	padding:5px;
+	font-size:18px;
+}
+
+	

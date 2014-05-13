@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Login</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+<div align="center">
+<h:form id="form">
+<p:menubar style="background-color:#888888 ">
+        <p:menuitem value="Cart" icon="ui-icon-cart" action="#{cart.displayCart}" >
+        <f:setPropertyActionListener target="#{cart.user_id}" value="#{login.user_id}" /></p:menuitem>
+        <p:menuitem value="Logout" action="#{login.logout}" />
+  </p:menubar>
+<h1>Welcome #{login.username}</h1>
+
+Select Category:<h:selectOneMenu id="category" value="#{categoryList.categoryValue}" styleClass="button" style="height:30px">
+   <f:selectItem itemLabel="Select Category" itemValue=""  />
+   <f:selectItems value="#{categoryList.l1}" />
+   </h:selectOneMenu>
+ <h:commandButton value="Submit" styleClass="button">
+  <f:ajax  execute="category" render="output" />
+</h:commandButton> 
+<h:panelGroup id="output">  
+<h:dataTable value="#{categoryList.products}" var="o"  styleClass="hoverTable" headerClass="tableHeader" rendered="#{not empty categoryList.products}">
+ <h:column >
+ <f:facet name="header">Product Name</f:facet>
+ #{o.name}
+</h:column>
+ <h:column>
+  <f:facet name="header">Product Description</f:facet>
+#{o.description}
+</h:column>
+<h:column>
+  <f:facet name="header">Product Image</f:facet>
+<h:graphicImage url="#{o.img}" height="100" width="100"/>
+</h:column>
+<h:column>
+ <f:facet name="header">Product Price {$}</f:facet>
+#{o.price} 
+</h:column>
+<h:column>
+ <f:facet name="header">Available Quantity</f:facet>
+#{o.qty}
+</h:column>
+<h:column style="width:120px">
+ <f:facet name="header">Required Quantity</f:facet>
+   #{o.ct_qty}
+   <h:commandButton value="+" action="#{categoryList.addItem(o)}" styleClass="button" style="padding:4px 4px;width:20px; margin-right:6px"/>
+    <h:commandButton value="-" action="#{categoryList.removeItem(o)}" styleClass="button" style="padding:4px 4px;width:20px"/> 
+   </h:column>
+   
+
+ <h:column>
+<h:commandButton value="Add to cart" action="#{cart.addToCart}" styleClass="button">
+<f:setPropertyActionListener target="#{cart.user_id}" value="#{login.user_id}" />
+<f:setPropertyActionListener target="#{cart.product_id}" value="#{o.product_id}" />
+ <f:setPropertyActionListener target="#{cart.available_qty}" value="#{o.qty}" /> 
+ <f:setPropertyActionListener target="#{cart.ct_qty}" value="#{o.ct_qty}" />
+</h:commandButton>
+</h:column>
+</h:dataTable>
+</h:panelGroup>
+</h:form>
+
+</div>
+</h:body>
+</html>

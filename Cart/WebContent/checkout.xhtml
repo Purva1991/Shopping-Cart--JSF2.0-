@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>CheckOut</title>
+	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+</style>
+</h:head>
+
+<h:body>
+
+	<h:form>
+	<p:menubar style="background-color:#888888 ">
+        <p:menuitem value="Home" icon="ui-icon-home" url="success.xhtml">
+        <f:setPropertyActionListener target="#{cart.user_id}" value="#{checkout.user_id}" /></p:menuitem>
+        <p:menuitem value="Logout" action="#{login.logout}" />
+  </p:menubar>
+	<h:outputText value="Your Total:#{cart.finalTotal}" style="font-weight:bold; font-size:20px"/> <br></br><br></br>
+	<div align="center">
+	<h:panelGrid columns="3" styleClass="formTable" >
+	Address in your profile	
+		<table border="1" style="margin:10px 0 10px 0;border-collapse:collapse">
+  <tr><td> Address:</td><td>#{checkout.savedAddress1} #{checkout.savedAddress2}</td> </tr>
+  <tr><td> State:</td><td> #{checkout.savedState}</td> </tr>
+  <tr><td> Postal Code:</td><td>#{checkout.savedPostalCode}</td> </tr>
+  </table>
+			
+	<h:outputLabel value="Do u want to use this address for shipping?" for="checkbox1" ></h:outputLabel>
+	<h:selectBooleanCheckbox value="#{checkout.addressValue}" binding="#{checkbox}" id="checkbox1" styleClass="checkBox">
+	<f:ajax render="address1" />
+	<f:ajax render="address2" />
+	<f:ajax render="state" />
+	<f:ajax render="zip" />
+	</h:selectBooleanCheckbox>
+Address1:           
+<h:inputText value="#{checkout.address1}" disabled="#{checkbox.value == 'true'}" required="true"
+					requiredMessage="Address required" id="address1" styleClass="textbox"/>
+				<h:message for="address1" styleClass="error" />
+Address2:           
+<h:inputText value="#{checkout.address2}"  id="address2" styleClass="textbox" disabled="#{checkbox.value == 'true'}"/>
+	<h:message for="address2" styleClass="error" />
+State:
+<h:inputText value="#{checkout.state}" required="true"
+					requiredMessage="State required" id="state" styleClass="textbox" disabled="#{checkbox.value == 'true'}" />
+				<h:message for="state" styleClass="error" />
+Postal Code:
+<h:inputText value="#{checkout.postalCode}" required="true" id="zip" styleClass="textbox" disabled="#{checkbox.value == 'true'}" validatorMessage="Postal Code should contain 5 digits">
+				 <f:validateLength minimum="5" maximum="5"/></h:inputText>
+				<h:message for="zip" styleClass="error" showDetail="true"/>
+				
+
+Card Number:           
+<h:inputText value="#{checkout.cardNumber}" required="true" id="cardNum" requiredMessage="Card Number required" styleClass="textbox" validatorMessage="Card Number should contain 16 digits"> 
+					<f:validateLength minimum="16" maximum="16"/></h:inputText>
+				<h:message for="cardNum" styleClass="error" />
+Expiration Month (MM):
+<h:inputText value="#{checkout.expiryMonth}" required="true"
+					requiredMessage="Expiration Month required" validatorMessage="Month can be between 01-12" id="expiryMonth" styleClass="textbox" >
+					<f:validateLongRange minimum="01" maximum="12"/>
+					</h:inputText>
+				<h:message for="expiryMonth" styleClass="error" />
+Expiration Year (YY):
+<h:inputText value="#{checkout.expiryYear}" required="true"
+					requiredMessage="Expiration Year required" validatorMessage="Expiration Year should be 2014 or later" id="expiryYear" styleClass="textbox">
+					<f:validateLongRange minimum="14" /></h:inputText>
+				<h:message for="expiryYear" styleClass="error" />
+CVV:           
+<h:inputText value="#{checkout.cvv}"  id="cvv"
+required="true" requiredMessage="CVV required" validatorMessage="CVV should contain 3 digits" styleClass="textbox">
+<f:validateLength minimum="3" maximum="3"/></h:inputText>
+	<h:message for="cvv" styleClass="error" />
+
+</h:panelGrid>
+<h:commandButton value="Confirm Order" action="#{checkout.doCheckout}" styleClass="button"/>
+
+
+	</div>
+	</h:form>
+</h:body>
+
+</html>
+		

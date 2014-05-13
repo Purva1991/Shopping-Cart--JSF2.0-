@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/purva" auth="Container" type="javax.sql.DataSource"
+	 username="oracle" password="oracle" driverClassName="oracle.jdbc.driver.OracleDriver"
+	 url="jdbc:oracle:thin:@//172.16.28.156:1521/orcl"/>
+
+</Context>
